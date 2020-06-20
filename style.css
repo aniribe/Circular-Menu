@@ -12,8 +12,12 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: rgb(231, 231, 231);
+  background: rgb(218, 218, 218);
+  background: #5b525e;
 }
+
+/** Container
+*************/
 
 .container {
   display: flex;
@@ -23,97 +27,153 @@ body {
   height: 300px;
   border-radius: 50%;
   background: linear-gradient(rgb(235, 233, 233), rgb(231, 231, 231));
-
-  box-shadow: 0 6px 15px -1px rgba(36, 36, 36, 0.5);
+  background: linear-gradient(#473d49 40%, #534c5a 60%);
+  box-shadow: 0 -8px 10px -1px rgb(105, 95, 114),
+    0px 15px 35px 0px rgba(19, 19, 19, 0.6), 0 3px 10px -2px rgba(0, 0, 0, 0.5);
 }
+
+/** Menu buttons
+*********************/
 
 .container .menu-base {
   position: relative;
-  width: 290px;
-  height: 290px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   overflow: hidden;
+  box-shadow: 0 2px 3px rgb(32, 32, 32), 0 -2px 3px rgba(32, 32, 32, 0.5);
 }
+
+.container .menu-base .divider {
+  position: absolute;
+  width: 3px;
+  height: 90px;
+  background: #332b35;
+}
+
+.container .menu-base .divider:nth-of-type(1) {
+  left: 50%;
+}
+
+.container .menu-base .divider:nth-of-type(2) {
+  top: 4%;
+  left: 80%;
+  transform: rotate(45deg);
+}
+
+.container .menu-base .divider:nth-of-type(3) {
+  top: 35%;
+  left: 90%;
+  transform: rotate(90deg);
+}
+
+.container .menu-base .divider:nth-of-type(4) {
+  top: 65%;
+  left: 80%;
+  transform: rotate(135deg);
+}
+
+.container .menu-base .divider:nth-of-type(5) {
+  top: 75%;
+  left: 50%;
+  transform: rotate(0deg);
+}
+
+.container .menu-base .divider:nth-of-type(6) {
+  top: 67%;
+  left: 19%;
+  transform: rotate(45deg);
+}
+
+.container .menu-base .divider:nth-of-type(7) {
+  top: 35%;
+  left: 15%;
+  transform: rotate(90deg);
+}
+
+.container .menu-base .divider:nth-of-type(8) {
+  top: 4%;
+  left: 17%;
+  transform: rotate(132deg);
+}
+
+/** Menu icons
+*********************/
 
 .container .menu-base .icon {
   position: absolute;
-  display: inline-block;
-  width: 63px;
-  height: 80px;
-  background: #757477;
-}
-
-.container .menu-base .icon::before {
-  position: absolute;
-  content: "";
-  top: 0px;
-  left: -50%;
-  border-top: 50px solid #757477;
-  border-left: 20px solid transparent;
-  border-right: 20px solid #757477;
-  border-bottom: 50px solid transparent;
-  transform: rotate(0deg);
-}
-
-.container .menu-base .icon::after {
-  position: absolute;
-  content: "";
-  top: 0px;
-  right: -50%;
-  border-top: 50px solid #757477;
-  border-left: 20px solid #757477;
-  border-right: 20px solid transparent;
-  border-bottom: 50px solid transparent;
-  transform: rotate(0deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 50px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 50px;
 }
 
 .container .menu-base .icon:nth-of-type(1) {
-  top: 4.5px;
-  left: 69px;
-  transform: rotate(-23deg);
+  top: 15px;
+  left: 72px;
+  transform: rotate(-18deg);
 }
 
 .container .menu-base .icon:nth-of-type(2) {
-  top: 66px;
-  left: 3px;
+  top: 78px;
+  left: 9px;
   transform: rotate(-68deg);
 }
 
 .container .menu-base .icon:nth-of-type(3) {
-  top: 156px;
-  left: 6.5px;
+  top: 175px;
+  left: 9px;
   transform: rotate(-113deg);
 }
 
 .container .menu-base .icon:nth-of-type(4) {
-  top: 217px;
-  left: 72px;
+  top: 232px;
+  left: 78px;
   transform: rotate(-158deg);
 }
 
 .container .menu-base .icon:nth-of-type(5) {
-  top: 219px;
+  top: 232px;
   left: 162px;
   transform: rotate(-203deg);
 }
 
 .container .menu-base .icon:nth-of-type(6) {
-  top: 155px;
+  top: 169px;
   left: 225px;
   transform: rotate(-248deg);
 }
 
 .container .menu-base .icon:nth-of-type(7) {
-  top: 65px;
+  top: 78px;
   left: 226px;
   transform: rotate(-294deg);
 }
 
 .container .menu-base .icon:nth-of-type(8) {
-  top: 6px;
-  left: 159px;
+  top: 15px;
+  left: 164px;
   transform: rotate(-339deg);
 }
+
+.container .menu-base .icon i {
+  position: absolute;
+  font-size: 1.8rem;
+  /* color: rgb(65, 65, 65); */
+  color: #7b7185;
+  text-shadow: 0 -1px 1px rgb(17, 17, 17);
+}
+
+.menu-base .icon.active i {
+  color: #fcd722;
+}
+
+/** Knob base
+*********************/
 
 .container .knob-base {
   position: absolute;
@@ -124,44 +184,57 @@ body {
   height: 176px;
   border-radius: 50%;
   background: rgb(235, 233, 233);
+  background: #423744;
+  transform: rotate(0deg);
+  transition: transform 0.5s ease-in-out;
 }
+
+.container .knob-base::before {
+  position: absolute;
+  content: "";
+  top: -11px;
+  left: 37px;
+  border-top: 20px solid rgb(233, 196, 14);
+  border-right: 14px solid transparent;
+  border-left: 14px solid transparent;
+  border-bottom: 5px solid transparent;
+  transform: rotate(157deg);
+}
+
+/** Knob
+*********************/
 
 .container .knob-base .knob {
   position: absolute;
   width: 168px;
   height: 168px;
   border-radius: 50%;
-  background: linear-gradient(#fcd722 30%, #f1ca02 50%);
-  box-shadow: 0 1px 5px rgba(10, 10, 10, 0.6);
+  background: linear-gradient(#fcd722, #e4be03);
+  box-shadow: 0 1px 5px rgba(10, 10, 10, 0.6),
+    inset 0 -6px 15px rgb(146, 125, 4);
 }
 
-.container .handle-base {
+.container i {
   position: absolute;
-  width: 168px;
-  height: 168px;
-  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  font-size: 4rem;
+  transform: translate(-50%, -50%);
+  color: #f1f0b2;
+  text-shadow: 0 1px 3px rgb(73, 71, 38);
+  transition: transform 0.3s ease-in-out;
 }
 
-.container .handle-base .handle {
+/** Handle
+**************/
+
+.container .knob-base .knob .handle {
   position: absolute;
   width: 25px;
   height: 25px;
   top: 8%;
-  left: 28%;
+  left: 27%;
   border-radius: 50%;
   background: linear-gradient(#eec704 20%, #ffdb27);
   box-shadow: 0 1px 1px #ffe45b, inset 0 1px 1px rgba(104, 104, 104, 0.2);
-}
-
-.container .handle-base .handle::before {
-  position: absolute;
-  content: "";
-  top: -27px;
-  left: -11px;
-  border-top: 20px solid #ffd813;
-  border-right: 14px solid transparent;
-  border-left: 14px solid transparent;
-  border-bottom: 5px solid transparent;
-  /* box-shadow: inset 0 2px 5px #000; */
-  transform: rotate(159deg);
 }
