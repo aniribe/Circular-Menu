@@ -9,62 +9,38 @@ let homeBtn = document.getElementById("home");
 let handle = document.querySelector(".knob-base");
 let knobIcon = document.getElementById("knobIcon");
 
+let rot = 0;
+
 cameraBtn.addEventListener("click", function () {
-  //   deleteActiveClass();
-  //   this.classList.add("active");
-  handle.style.transform = `rotate(${0}deg)`;
-  activateBtn(cameraBtn);
-  knobIcon.className = "fas fa-camera";
+  rotationHandle(this, 0, "fas fa-camera");
 });
 
 videoBtn.addEventListener("click", function () {
-  //   deleteActiveClass();
-  //   this.classList.add("active");
-  activateBtn(videoBtn);
-  handle.style.transform = `rotate(${-46}deg)`;
-  knobIcon.className = "fas fa-video";
+  rotationHandle(this, 310, "fas fa-video");
 });
 
 envelopeBtn.addEventListener("click", function () {
-  //   this.classList.add("active");
-  activateBtn(envelopeBtn);
-  handle.style.transform = `rotate(${-90}deg)`;
-  knobIcon.className = "fas fa-envelope";
+  rotationHandle(this, 270, "fas fa-envelope");
 });
 
 commentBtn.addEventListener("click", function () {
-  //   this.classList.add("active");
-  activateBtn(commentBtn);
-  handle.style.transform = `rotate(${-135}deg)`;
-  knobIcon.className = "fas fa-comment-alt";
+  rotationHandle(this, 230, "fas fa-comment-alt");
 });
 
 settingsBtn.addEventListener("click", function () {
-  //   this.classList.add("active");
-  activateBtn(settingsBtn);
-  handle.style.transform = `rotate(${180}deg)`;
-  knobIcon.className = "fas fa-cog";
+  rotationHandle(this, 180, "fas fa-cog");
 });
 
 microphoneBtn.addEventListener("click", function () {
-  //   this.classList.add("active");
-  activateBtn(microphoneBtn);
-  handle.style.transform = `rotate(${135}deg)`;
-  knobIcon.className = "fas fa-microphone";
+  rotationHandle(this, 135, "fas fa-microphone");
 });
 
 musicBtn.addEventListener("click", function () {
-  //   this.classList.add("active");
-  activateBtn(musicBtn);
-  handle.style.transform = `rotate(${90}deg)`;
-  knobIcon.className = "fas fa-music";
+  rotationHandle(this, 90, "fas fa-music");
 });
 
 homeBtn.addEventListener("click", function () {
-  //   this.classList.add("active");
-  activateBtn(homeBtn);
-  handle.style.transform = `rotate(${45}deg)`;
-  knobIcon.className = "fas fa-home";
+  rotationHandle(this, 45, "fas fa-home");
 });
 
 function deleteActiveClass() {
@@ -76,6 +52,38 @@ function deleteActiveClass() {
 }
 
 let activateBtn = (element) => {
-  deleteActiveClass();
   element.classList.add("active");
 };
+
+function addIconOnKnob(classes) {
+  knobIcon.className = classes;
+}
+
+function newRotate(newRot) {
+  let apparentRot = rot % 360;
+
+  if (apparentRot < 0) {
+    apparentRot += 360;
+  }
+
+  if (apparentRot < 180 && newRot > apparentRot + 180) {
+    // rotate back
+    rot -= 360;
+  }
+
+  if (apparentRot >= 180 && newRot <= apparentRot - 180) {
+    // rotate forward
+    rot += 360;
+  }
+
+  rot += newRot - apparentRot;
+
+  handle.style.transform = `rotate(${rot}deg)`;
+}
+
+function rotationHandle(element, newRot, classes) {
+  deleteActiveClass();
+  activateBtn(element);
+  newRotate(newRot);
+  addIconOnKnob(classes);
+}
